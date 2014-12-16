@@ -130,6 +130,7 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
         );
 
         $folders = array();
+        $component->setLocale($this->locale);
 
         $form = $this->createFormBuilder($data);
         $form->addRow('display', 'option', array(
@@ -147,7 +148,7 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
             'attributes' => array(
                 'class' => 'option-display option-display-folder',
             ),
-            'options' => array('' => '') + $folderModel->getOptionList(),
+            'options' => array('' => '') + $folderModel->getOptionList($this->locale),
         ));
         $form->addRow(self::PROPERTY_ASSETS, 'collection', array(
             'label' => $translator->translate('label.assets'),
