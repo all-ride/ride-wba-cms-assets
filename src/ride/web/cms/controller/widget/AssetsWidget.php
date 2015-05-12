@@ -150,16 +150,13 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
             ),
             'options' => array('' => '') + $folderModel->getOptionList($this->locale),
         ));
-        $form->addRow(self::PROPERTY_ASSETS, 'collection', array(
+        $form->addRow(self::PROPERTY_ASSETS, 'assets', array(
             'label' => $translator->translate('label.assets'),
             'attributes' => array(
                 'class' => 'option-display option-display-assets',
             ),
-            'type' => 'component',
+            'multiple' => true,
             'order' => true,
-            'options' => array(
-                'component' => $component,
-            ),
         ));
         $form->addRow(self::PROPERTY_UNLOCALIZED, 'boolean', array(
             'label' => $translator->translate('label.unlocalized'),
