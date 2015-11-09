@@ -1,6 +1,32 @@
 {
     "dependencies": [
         {
+            "interfaces": "ride\\library\\cms\\content\\text\\variable\\VariableParser",
+            "class": "ride\\web\\cms\\content\\text\\variable\\AssetVariableParser",
+            "id": "asset"
+        },
+        {
+            "interfaces": "ride\\library\\cms\\content\\text\\TextParser",
+            "class": "ride\\library\\cms\\content\\text\\VariablesTextParser",
+            "extends": "variables",
+            "id": "variables",
+            "calls": [
+                {
+                    "method": "addVariableParser",
+                    "arguments": [
+                        {
+                            "name": "variableParser",
+                            "type": "dependency",
+                            "properties": {
+                                "interface": "ride\\library\\cms\\content\\text\\variable\\VariableParser",
+                                "id": "asset"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "interfaces": "ride\\library\\cms\\widget\\Widget",
             "class": "ride\\web\\cms\\controller\\widget\\AssetsWidget",
             "id": "assets"
