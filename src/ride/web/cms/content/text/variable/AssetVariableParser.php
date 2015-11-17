@@ -39,17 +39,19 @@ class AssetVariableParser extends AbstractVariableParser {
             return null;
         }
 
-        $asset = $this->assetService->getAsset($tokens[1]);
-        if (!$asset) {
-            return null;
-        }
+        $asset = $tokens[1];
 
         $style = null;
         if (isset($tokens[2])) {
             $style = $tokens[2];
         }
 
-        return '<img src="' . $this->assetService->getAssetUrl($asset, $style) . '" title="' . htmlentities($asset->getName()) . '">';
+        $class = null;
+        if (isset($tokens[3])) {
+            $class = $tokens[3];
+        }
+
+        return $this->assetService->getAssetHtml($asset, $style, $class);
     }
 
 }

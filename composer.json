@@ -2,7 +2,7 @@
     "name": "ride/wba-cms-assets",
     "description": "CMS integration of the assets module",
     "license": "MIT",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "authors": [
         {
             "name": "Joris Vandeweerd",
@@ -13,7 +13,7 @@
         "ride/lib-cms": ">=0.15.0",
         "ride/lib-orm": ">=0.7.2",
         "ride/lib-validation": ">=0.1.0",
-        "ride/wba-assets": ">=0.7.1",
+        "ride/wba-assets": ">=0.8.0",
         "ride/web-cms": ">=0.18.0"
     },
     "autoload": {
