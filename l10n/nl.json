@@ -1,4 +1,11 @@
 {
     "label.display": "Weergave",
-    "widget.assets": "Assets"
+    "permission.cms.widget.assets.cache": "Assets widget cache",
+    "permission.cms.widget.assets.manage": "Asset widget kunnen toevoegen",
+    "permission.cms.widget.assets.properties": "Asset widget eigenschappen wijzigen",
+    "permission.cms.widget.assets.style": "Extra style classes toevoegen aan assets widget",
+    "permission.cms.widget.assets.templates": "Asset widget template aanpassen",
+    "permission.cms.widget.assets.visibility": "Asset widget zichtbaarheid aanpassen",
+    "widget.assets": "Assets",
+    "widget.gallery": "Galerij"
 }

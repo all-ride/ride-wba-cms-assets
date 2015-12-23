@@ -30,6 +30,11 @@
             "interfaces": "ride\\library\\cms\\widget\\Widget",
             "class": "ride\\web\\cms\\controller\\widget\\AssetsWidget",
             "id": "assets"
+        },
+        {
+            "interfaces": "ride\\library\\cms\\widget\\Widget",
+            "class": "ride\\web\\cms\\controller\\widget\\GalleryWidget",
+            "id": "gallery"
         }
     ]
 }
