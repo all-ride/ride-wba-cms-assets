@@ -3,6 +3,7 @@
 namespace ride\web\cms\content\text\variable;
 
 use ride\library\cms\content\text\variable\AbstractVariableParser;
+use ride\library\image\exception\ImageException;
 
 use ride\service\AssetService;
 
@@ -51,7 +52,13 @@ class AssetVariableParser extends AbstractVariableParser {
             $class = $tokens[3];
         }
 
-        return $this->assetService->getAssetHtml($asset, $style, $class);
+        try {
+            $image = $this->assetService->getAssetHtml($asset, $style, $class);
+        } catch (ImageException $exception) {
+            $image = null;
+        }
+
+        return $image;
     }
 
 }
