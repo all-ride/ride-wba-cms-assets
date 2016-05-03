@@ -83,9 +83,9 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
         $folder = null;
         $this->resolveAssets($this->dependencyInjector->get('ride\\library\\orm\\OrmManager'), $assets, $folder);
 
-        if ($folder && isset($folder->name)) {
+        if ($folder && $this->properties->getWidgetProperty(self::PROPERTY_FOLDER)) {
             $preview .= '<strong>' . $translator->translate('label.folder') . '</strong>: ' . $folder->getName() . '<br>';
-        } elseif ($assets) {
+        } elseif ($assets && $this->properties->getWidgetProperty(self::PROPERTY_ASSETS)) {
             foreach ($assets as $index => $asset) {
                 $assets[$index] = $asset->getName();
             }
@@ -232,6 +232,7 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
         $assetModel = $orm->getAssetModel();
 
         $fetchUnlocalized = $this->properties->getWidgetProperty(self::PROPERTY_UNLOCALIZED) ? true : false;
+
         $folder = $this->properties->getWidgetProperty(self::PROPERTY_FOLDER);
         $assets = $this->properties->getWidgetProperty(self::PROPERTY_ASSETS);
         if ($assets) {
@@ -244,10 +245,11 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
                     unset($assets[$index]);
                 }
             }
-        } else {
+        } elseif ($folder) {
             $folderModel = $orm->getAssetFolderModel();
 
             $folder = $folderModel->getFolder($folder, $this->locale, $fetchUnlocalized);
+
             $assets = $assetModel->getByFolder($folder, $this->locale, $fetchUnlocalized);
         }
     }
