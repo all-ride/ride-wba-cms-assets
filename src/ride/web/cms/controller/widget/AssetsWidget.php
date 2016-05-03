@@ -245,7 +245,7 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
                     unset($assets[$index]);
                 }
             }
-        } else {
+        } elseif ($folder) {
             $folderModel = $orm->getAssetFolderModel();
 
             $folder = $folderModel->getFolder($folder, $this->locale, $fetchUnlocalized);
