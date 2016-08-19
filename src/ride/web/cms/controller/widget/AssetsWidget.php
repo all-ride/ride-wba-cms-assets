@@ -83,9 +83,9 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
         $folder = null;
         $this->resolveAssets($this->dependencyInjector->get('ride\\library\\orm\\OrmManager'), $assets, $folder);
 
-        if ($folder && $this->properties->getWidgetProperty(self::PROPERTY_FOLDER)) {
+        if ($folder && $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER)) {
             $preview .= '<strong>' . $translator->translate('label.folder') . '</strong>: ' . $folder->getName() . '<br>';
-        } elseif ($assets && $this->properties->getWidgetProperty(self::PROPERTY_ASSETS)) {
+        } elseif ($assets && $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS)) {
             foreach ($assets as $index => $asset) {
                 $assets[$index] = $asset->getName();
             }
@@ -113,8 +113,8 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
 
         $translator = $this->getTranslator();
 
-        $folder = $this->properties->getWidgetProperty(self::PROPERTY_FOLDER);
-        $assets = $this->properties->getWidgetProperty(self::PROPERTY_ASSETS);
+        $folder = $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER);
+        $assets = $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS);
         if ($assets) {
             $display = self::PROPERTY_ASSETS;
 
@@ -130,7 +130,7 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
             'display' => $display,
             self::PROPERTY_FOLDER => $folder,
             self::PROPERTY_ASSETS => $assets,
-            self::PROPERTY_UNLOCALIZED => $this->properties->getWidgetProperty(self::PROPERTY_UNLOCALIZED),
+            self::PROPERTY_UNLOCALIZED => $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_UNLOCALIZED),
             self::PROPERTY_TEMPLATE => $this->getTemplate(static::TEMPLATE_NAMESPACE . '/default'),
             self::PROPERTY_TITLE => $this->properties->getWidgetProperty(self::PROPERTY_TITLE . '.' . $this->locale),
         );
@@ -197,11 +197,11 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
                         $assets[] = $asset->getId();
                     }
 
-                    $this->properties->setWidgetProperty(self::PROPERTY_ASSETS, implode(NodeProperty::LIST_SEPARATOR, $assets));
-                    $this->properties->setWidgetProperty(self::PROPERTY_FOLDER, null);
+                    $this->properties->setLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS, implode(NodeProperty::LIST_SEPARATOR, $assets));
+                    $this->properties->setLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER, null);
                 } else {
-                    $this->properties->setWidgetProperty(self::PROPERTY_ASSETS, null);
-                    $this->properties->setWidgetProperty(self::PROPERTY_FOLDER, $data[self::PROPERTY_FOLDER]);
+                    $this->properties->setLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS, null);
+                    $this->properties->setLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER, $data[self::PROPERTY_FOLDER]);
                 }
 
                 $this->properties->setWidgetProperty(self::PROPERTY_UNLOCALIZED, $data[self::PROPERTY_UNLOCALIZED]);
