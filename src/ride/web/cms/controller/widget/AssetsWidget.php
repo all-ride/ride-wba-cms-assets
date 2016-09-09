@@ -233,8 +233,8 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
 
         $fetchUnlocalized = $this->properties->getWidgetProperty(self::PROPERTY_UNLOCALIZED) ? true : false;
 
-        $folder = $this->properties->getWidgetProperty(self::PROPERTY_FOLDER);
-        $assets = $this->properties->getWidgetProperty(self::PROPERTY_ASSETS);
+        $folder = $this->properties->getLocalizedWidgetProperty($this->locale, self::PROPERTY_FOLDER);
+        $assets = $this->properties->getLocalizedWidgetProperty($this->locale, self::PROPERTY_ASSETS);
         if ($assets) {
             $assets = explode(NodeProperty::LIST_SEPARATOR, $assets);
             foreach ($assets as $index => $assetId) {
