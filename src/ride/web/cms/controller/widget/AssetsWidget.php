@@ -113,8 +113,8 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
 
         $translator = $this->getTranslator();
 
-        $folder = $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER);
-        $assets = $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS);
+        $folder = $this->properties->getLocalizedWidgetProperty($this->locale, self::PROPERTY_FOLDER);
+        $assets = $this->properties->getLocalizedWidgetProperty($this->locale, self::PROPERTY_ASSETS);
         if ($assets) {
             $display = self::PROPERTY_ASSETS;
 
@@ -197,11 +197,11 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
                         $assets[] = $asset->getId();
                     }
 
-                    $this->properties->setLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS, implode(NodeProperty::LIST_SEPARATOR, $assets));
-                    $this->properties->setLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER, null);
+                    $this->properties->setLocalizedWidgetProperty($this->locale, self::PROPERTY_ASSETS, implode(NodeProperty::LIST_SEPARATOR, $assets));
+                    $this->properties->setLocalizedWidgetProperty($this->locale, self::PROPERTY_FOLDER, null);
                 } else {
-                    $this->properties->setLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS, null);
-                    $this->properties->setLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER, $data[self::PROPERTY_FOLDER]);
+                    $this->properties->setLocalizedWidgetProperty($this->locale, self::PROPERTY_ASSETS, null);
+                    $this->properties->setLocalizedWidgetProperty($this->locale, self::PROPERTY_FOLDER, $data[self::PROPERTY_FOLDER]);
                 }
 
                 $this->properties->setWidgetProperty(self::PROPERTY_UNLOCALIZED, $data[self::PROPERTY_UNLOCALIZED]);
@@ -233,8 +233,8 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
 
         $fetchUnlocalized = $this->properties->getWidgetProperty(self::PROPERTY_UNLOCALIZED) ? true : false;
 
-        $folder = $this->properties->getWidgetProperty(self::PROPERTY_FOLDER);
-        $assets = $this->properties->getWidgetProperty(self::PROPERTY_ASSETS);
+        $folder = $this->properties->getLocalizedWidgetProperty($this->locale, self::PROPERTY_FOLDER);
+        $assets = $this->properties->getLocalizedWidgetProperty($this->locale, self::PROPERTY_ASSETS);
         if ($assets) {
             $assets = explode(NodeProperty::LIST_SEPARATOR, $assets);
             foreach ($assets as $index => $assetId) {
