@@ -3,9 +3,11 @@
 namespace ride\web\cms\content\text\variable;
 
 use ride\library\cms\content\text\variable\AbstractVariableParser;
-use ride\library\image\exception\ImageException;
+use ride\library\log\Log;
 
 use ride\service\AssetService;
+
+use \Exception;
 
 /**
  * Implementation to parse asset variables
@@ -19,12 +21,19 @@ class AssetVariableParser extends AbstractVariableParser {
     protected $assetService;
 
     /**
+     * Instance of the log
+     * @var \ride\library\log\Log
+     */
+    protected $log;
+
+    /**
      * Constructs a new asset variable service
      * @param \ride\service\AssetService $assetService
      * @return null
      */
-    public function __construct(AssetService $assetService) {
+    public function __construct(AssetService $assetService, Log $log) {
         $this->assetService = $assetService;
+        $this->log = $log;
     }
 
     /**
@@ -54,8 +63,14 @@ class AssetVariableParser extends AbstractVariableParser {
 
         try {
             $image = $this->assetService->getAssetHtml($asset, $style, $class);
-        } catch (ImageException $exception) {
+        } catch (Exception $exception) {
+            $this->log->logWarning('Could not render asset #' . $asset, $exception->getMessage());
+
             $image = null;
+        }
+
+        if ($image === null) {
+            $image = '';
         }
 
         return $image;
