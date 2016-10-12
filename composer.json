@@ -13,7 +13,7 @@
         "ride/lib-cms": ">=0.15.0",
         "ride/lib-orm": ">=0.7.2",
         "ride/lib-validation": ">=0.1.0",
-        "ride/wba-assets": ">=0.8.0",
+        "ride/wba-assets": ">=0.11.0",
         "ride/web-cms": ">=0.18.0"
     },
     "autoload": {

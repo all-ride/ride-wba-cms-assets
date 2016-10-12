@@ -6,8 +6,6 @@ use ride\library\cms\node\NodeProperty;
 use ride\library\orm\OrmManager;
 use ride\library\validation\exception\ValidationException;
 
-use ride\web\base\form\AssetSelectComponent;
-
 /**
  * Widget to show assets
  */
@@ -107,7 +105,7 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
      * Action to handle and show the properties of this widget
      * @return null
      */
-    public function propertiesAction(OrmManager $orm, AssetSelectComponent $component) {
+    public function propertiesAction(OrmManager $orm) {
         $assetModel = $orm->getAssetModel();
         $folderModel = $orm->getAssetFolderModel();
 
@@ -136,7 +134,6 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
         );
 
         $folders = array();
-        $component->setLocale($this->locale);
 
         $form = $this->createFormBuilder($data);
         $form->addRow('display', 'option', array(
