@@ -82,9 +82,9 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
         $folder = null;
         $this->resolveAssets($this->dependencyInjector->get('ride\\library\\orm\\OrmManager'), $assets, $folder);
 
-        if ($folder && $folder instanceof AssetFolderEntry && $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER)) {
+        if ($folder && $folder instanceof AssetFolderEntry && $this->properties->getLocalizedWidgetProperty($this->locale, self::PROPERTY_FOLDER)) {
             $preview .= '<strong>' . $translator->translate('label.folder') . '</strong>: ' . $folder->getName() . '<br>';
-        } elseif ($assets && $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS)) {
+        } elseif ($assets && $this->properties->getLocalizedWidgetProperty($this->locale, self::PROPERTY_ASSETS)) {
             foreach ($assets as $index => $asset) {
                 $assets[$index] = $asset->getName();
             }
@@ -200,6 +200,9 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
                 } else {
                     $this->properties->setLocalizedWidgetProperty($this->locale, self::PROPERTY_ASSETS, null);
                     $this->properties->setLocalizedWidgetProperty($this->locale, self::PROPERTY_FOLDER, $data[self::PROPERTY_FOLDER]);
+
+                    // Fallback for broken localized fields
+                    $this->properties->setWidgetProperty(self::PROPERTY_ASSETS, null);
                 }
 
                 $this->properties->setWidgetProperty(self::PROPERTY_UNLOCALIZED, $data[self::PROPERTY_UNLOCALIZED]);
