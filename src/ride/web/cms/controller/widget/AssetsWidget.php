@@ -2,6 +2,7 @@
 
 namespace ride\web\cms\controller\widget;
 
+use ride\application\orm\entry\AssetFolderEntry;
 use ride\library\cms\node\NodeProperty;
 use ride\library\orm\OrmManager;
 use ride\library\validation\exception\ValidationException;
@@ -81,7 +82,7 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
         $folder = null;
         $this->resolveAssets($this->dependencyInjector->get('ride\\library\\orm\\OrmManager'), $assets, $folder);
 
-        if ($folder && $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER)) {
+        if ($folder && $folder instanceof AssetFolderEntry && $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_FOLDER)) {
             $preview .= '<strong>' . $translator->translate('label.folder') . '</strong>: ' . $folder->getName() . '<br>';
         } elseif ($assets && $this->properties->getLocalizedWidgetProperty($this->getLocale(), self::PROPERTY_ASSETS)) {
             foreach ($assets as $index => $asset) {
