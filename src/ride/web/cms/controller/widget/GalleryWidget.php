@@ -89,7 +89,7 @@ class GalleryWidget extends AbstractWidget implements StyleWidget {
 
             $parent = $folder;
             do {
-                $breadcrumbs[$this->getUrl('gallery.folder.detail', array('folder' => $parent->getSlug()))] = $parent->getName();
+                $breadcrumbs[(string) $this->getUrl('gallery.folder.detail', array('folder' => $parent->getSlug()))] = $parent->getName();
 
                 $parent = $folderModel->getFolder($parent->getParentFolderId(), $this->locale, $fetchUnlocalized);
             } while ($parent && $parent->getId() != $rootFolder->getId());
@@ -106,7 +106,7 @@ class GalleryWidget extends AbstractWidget implements StyleWidget {
         $children = array();
         $folders = $folderModel->getFolders($folder, $this->locale, $fetchUnlocalized);
         foreach ($folders as $child) {
-            $children[$this->getUrl('gallery.folder.detail', array('folder' => $child->getSlug()))] = $child;
+            $children[(string) $this->getUrl('gallery.folder.detail', array('folder' => $child->getSlug()))] = $child;
         }
 
         // assign to view
