@@ -264,6 +264,7 @@ class AssetsWidget extends AbstractWidget implements StyleWidget {
         return array(
             'container' => 'label.style.container',
             'title' => 'label.style.title',
+            'list' => 'label.style.list',
         );
     }
 
